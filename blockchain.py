@@ -51,7 +51,7 @@ class Blockchain(object):
             }
         )
 
-        return self.last_blok["index"] + 1
+        return self.last_block["index"] + 1
 
     @staticmethod
     def hash(block: dict) -> str:

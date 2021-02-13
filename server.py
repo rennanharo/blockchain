@@ -4,7 +4,7 @@ from textwrap import dedent
 from time import time
 from uuid import uuid4
 
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 from flask.wrappers import Response
 
 from blockchain import Blockchain
@@ -46,7 +46,7 @@ def mine():
 
 
 @app.route("/transactions/new", methods=["POST"])
-def new_transaction(request):
+def new_transaction():
     values = request.get_json()
 
     # Check that the required fields are in the POSTed data
