@@ -2,12 +2,14 @@ import hashlib
 import json
 from time import time
 from uuid import uuid4
+from urllib.parse import urlparse
 
 
 class Blockchain(object):
     def __init__(self) -> None:
         self.chain = []
         self.current_transactions = []
+        self.nodes = set()
 
         # Create the genesis block
         self.new_block(previous_hash=1, proof=100)
@@ -96,3 +98,13 @@ class Blockchain(object):
         guess = f"{last_proof}{proof}".encode()
         guess_hash = hashlib.sha256(guess).hexdigest()
         return guess_hash[:4] == "0000"
+
+    def register_node(self, address: str) -> None:
+        """
+        Add a new node to the list of nodes
+        :param address: <srt> Address of node. Eg. 'http://192.168.0.5:5000'
+        :return: None
+        """
+
+        parsed_url = urlparse(address)
+        self.nodes.add(parsed_url.netloc)
