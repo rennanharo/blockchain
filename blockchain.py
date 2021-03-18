@@ -164,6 +164,8 @@ class Blockchain(object):
                     max_length = length
                     new_chain = chain
 
+        # Adding a comment
+
         # Replace our chian if we discovered a new, valid chain longer than ours
         if new_chain:
             self.chain = new_chain
